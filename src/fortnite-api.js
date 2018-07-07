@@ -15,7 +15,7 @@ exports.handler = (event, context) => {
         return res;
     }).catch(function (err) {
         return Promise.reject({
-            statusCode: res.statusCode,
+            statusCode: err.statusCode,
             message: 'Error interacting with Fortnite API.'
         });
     }));
