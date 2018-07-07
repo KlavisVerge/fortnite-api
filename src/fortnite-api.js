@@ -9,7 +9,7 @@ exports.handler = (event, context) => {
     var options = {
         url: 'https://api.fortnitetracker.com/v1/profile/pc/KlavisVerge',
         headers: {
-            'TRN-Api-Key': 'xxx'
+            'TRN-Api-Key': process.env.FORTNITE_TRN_API_KEY
         }
     };
     promises.push(request(options).promise().then((error, response, body) => {
