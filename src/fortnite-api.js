@@ -17,7 +17,7 @@ exports.handler = (event, context) => {
             var info = JSON.parse(body);
             console.log('Success: ' + JSON.stringify(info));
         } else {
-            console.log('Error: ' + JSON.stringify(info));
+            console.log('Error: ' + JSON.stringify(error));
         }
     }));
 
