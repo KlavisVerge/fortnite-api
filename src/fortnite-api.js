@@ -4,7 +4,6 @@ const request = require('request-promise');
 AWS.config.update({region: 'us-east-1'});
 
 exports.handler = (event, context) => {
-    console.log('starting request');
     let promises = [];
     var options = {
         url: 'https://api.fortnitetracker.com/v1/profile/pc/KlavisVerge',
@@ -12,20 +11,20 @@ exports.handler = (event, context) => {
             'TRN-Api-Key': process.env.FORTNITE_TRN_API_KEY
         }
     };
-    promises.push(request(options).promise().then((error, response, body) => {
-        if (!error && response.statusCode == 200) {
-            var info = JSON.parse(body);
-            console.log('Success: ' + JSON.stringify(info));
-        } else {
-            console.log('Error: ' + JSON.stringify(error));
-        }
+    promises.push(request(options).promise().then((res) => {
+        return res;
+    }).catch(function (err) {
+        return Promise.reject({
+            statusCode: res.statusCode,
+            message: 'Error interacting with Fortnite API.'
+        });
     }));
 
-    return Promise.all(promises).then(() => {
-        console.log('returning');
+    return Promise.all(promises).then((responses) => {
+        const[results] = responses;
         return context.succeed({
             statusCode: 200,
-            body: 'hi',
+            body: JSON.stringify(responses),
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Methods': 'POST',
