@@ -4,7 +4,7 @@ const request = require('request-promise');
 AWS.config.update({region: 'us-east-1'});
 
 exports.handler = (event, context) => {
-    const required = ['platform', 'epic-nickname'].filter((property) => !event.body[property]);
+    const required = ['platform', 'epicNickname'].filter((property) => !event.body[property]);
     if(required.length > 0){
         return Promise.reject({
             statusCode: 400,
