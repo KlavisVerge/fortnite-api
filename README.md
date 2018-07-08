@@ -10,3 +10,5 @@ aws apigateway get-resources --rest-api-id XXX
 deploy:
 terraform validate
 terraform apply -auto-approve
+
+aws apigateway create-deployment --rest-api-id XXX --stage-name api
