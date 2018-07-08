@@ -16,7 +16,7 @@ exports.handler = (event, context) => {
         return Promise.reject({
             statusCode: 400,
             message: `Required properties missing: "${required.join('", "')}".`
-        })
+        });
     }
     let promises = [];
     var options = {
