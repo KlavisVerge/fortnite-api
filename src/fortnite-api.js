@@ -4,6 +4,13 @@ const request = require('request-promise');
 AWS.config.update({region: 'us-east-1'});
 
 exports.handler = (event, context) => {
+    if(event){
+        if(!event.body){
+            event.body = {};
+        }else if(typeof event.body === 'string'){
+            event.body = JSON.parse(event.body);
+        }
+    }
     const required = ['platform', 'epicNickname'].filter((property) => !event.body[property]);
     if(required.length > 0){
         return Promise.reject({
