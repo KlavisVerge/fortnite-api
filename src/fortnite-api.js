@@ -4,9 +4,16 @@ const request = require('request-promise');
 AWS.config.update({region: 'us-east-1'});
 
 exports.handler = (event, context) => {
+    const required = ['platform', 'epic-nickname'].filter((property) => !event.body[property]);
+    if(required.length > 0){
+        return Promise.reject({
+            statusCode: 400,
+            message: `Required properties missing: "${required.join('", "')}".`
+        })
+    }
     let promises = [];
     var options = {
-        url: 'https://api.fortnitetracker.com/v1/profile/pc/KlavisVerge',
+        url: 'https://api.fortnitetracker.com/v1/profile/' + event.body.platform + '/' + event.body.epic-nickname,
         headers: {
             'TRN-Api-Key': process.env.FORTNITE_TRN_API_KEY
         }
