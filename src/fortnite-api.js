@@ -13,7 +13,7 @@ exports.handler = (event, context) => {
     }
     let promises = [];
     var options = {
-        url: 'https://api.fortnitetracker.com/v1/profile/' + event.body.platform + '/' + event.body.epic-nickname,
+        url: 'https://api.fortnitetracker.com/v1/profile/' + event.body.platform + '/' + event.body.epicNickname,
         headers: {
             'TRN-Api-Key': process.env.FORTNITE_TRN_API_KEY
         }
