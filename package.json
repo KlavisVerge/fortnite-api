@@ -2,7 +2,7 @@
     "name": "fortnite-api",
     "private": false,
     "version": "1.0.0",
-    "main": "app/index.js",
+    "main": "src/fortnite-api.js",
     "license": "MIT",
     "scripts": {
         "lint": "eslint . --ext js --ignore-path .gitignore",
