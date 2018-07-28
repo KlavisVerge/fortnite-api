@@ -38,7 +38,7 @@ resource "aws_lambda_function" "fortnite-api-function" {
 
   environment {
     variables {
-      fortnite_TRY_API_KEY = "${var.FORTNITE_TRN_API_KEY}"
+      FORTNITE_TRN_API_KEY = "${var.FORTNITE_TRN_API_KEY}"
     }
   }
 }
